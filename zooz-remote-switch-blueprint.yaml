@@ -67,7 +67,7 @@ blueprint:
       selector:
         action:
       default: []
-    release_sceene_001_actions:
+    release_scene_001_actions:
       name: Release Scene 001 Actions
       selector:
         action:
