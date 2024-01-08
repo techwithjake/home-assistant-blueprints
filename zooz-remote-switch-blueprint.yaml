@@ -3,8 +3,6 @@ blueprint:
   description: |
     Perform actions when Zooz ZEN34 Remote Switch buttons are interacted with.
 
-    The release action is equivalent to a long tap.
-
     A release action is always triggered after a hold action, which makes
     them a bit tricky to use. The hold action is repeated as long as the
     button is held down.
@@ -29,6 +27,21 @@ blueprint:
       selector:
         action:
       default: []
+    scene_001_keypressed3x_actions:
+      name: Scene 001 KeyPressed3x Actions
+      selector:
+        action:
+      default: []
+    scene_001_keypressed4x_actions:
+      name: Scene 001 KeyPressed4x Actions
+      selector:
+        action:
+      default: []
+    scene_001_keypressed5x_actions:
+      name: Scene 001 KeyPressed5x Actions
+      selector:
+        action:
+      default: []
     scene_002_keypressed_actions:
       name: Scene 002 KeyPressed Actions
       selector:
@@ -39,43 +52,38 @@ blueprint:
       selector:
         action:
       default: []
-    release_top_left_actions:
-      name: Release Top Left Actions
+    scene_002_keypressed3x_actions:
+      name: Scene 002 KeyPressed3x Actions
       selector:
         action:
       default: []
-    release_top_right_actions:
-      name: Release Top Right Actions
+    scene_002_keypressed4x_actions:
+      name: Scene 002 KeyPressed4x Actions
       selector:
         action:
       default: []
-    release_bottom_left_actions:
-      name: Release Bottom Left Actions
+    scene_002_keypressed5x_actions:
+      name: Scene 002 KeyPressed5x Actions
       selector:
         action:
       default: []
-    release_bottom_right_actions:
-      name: Release Bottom Right Actions
+    release_sceene_001_actions:
+      name: Release Scene 001 Actions
       selector:
         action:
       default: []
-    hold_top_left_actions:
-      name: Hold Top Left Actions
+    release_scene_002_actions:
+      name: Release Scene 002 Actions
       selector:
         action:
       default: []
-    hold_top_right_actions:
-      name: Hold Top Right Actions
+    hold_scene_001_actions:
+      name: Hold Scene 001 Actions
       selector:
         action:
       default: []
-    hold_bottom_left_actions:
-      name: Hold Bottom Left Actions
-      selector:
-        action:
-      default: []
-    hold_bottom_right_actions:
-      name: Hold Bottom Right Actions
+    hold_scene_002_actions:
+      name: Hold Scene 002 Actions
       selector:
         action:
       default: []
@@ -107,66 +115,76 @@ action:
             value_template: "{{ trigger.event.data.command_class_name == 'Central Scene' }}"
         sequence:
           - choose:
-            # IF tap top left
+            # IF scene 001
               - conditions:
                   - condition: template
                     value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed' }}"
                 sequence: !input scene_001_keypressed_actions
-            # IF tap top right
+            # IF scene 001 2x
               - conditions:
                   - condition: template
                     value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed2x' }}"
                 sequence: !input scene_001_keypressed2x_actions
-            # IF tap bottom left
+            # IF scene 001 3x
+              - conditions:
+                  - condition: template
+                    value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed3x' }}"
+                sequence: !input scene_001_keypressed3x_actions
+            # IF scene 001 4x
+              - conditions:
+                  - condition: template
+                    value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed4x' }}"
+                sequence: !input scene_001_keypressed4x_actions
+            # IF scene 001 5x
+              - conditions:
+                  - condition: template
+                    value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyPressed5x' }}"
+                sequence: !input scene_001_keypressed5x_actions
+            # IF scene 002
               - conditions:
                   - condition: template
                     value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyPressed' }}"
                 sequence: !input scene_002_keypressed_actions
-            # IF tap bottom right
+            # IF scene 002 2x
               - conditions:
                   - condition: template
                     value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyPressed2x' }}"
                 sequence: !input scene_002_keypressed2x_actions
-            # IF release top left
+            # IF scene 002 3x
+              - conditions:
+                  - condition: template
+                    value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyPressed3x' }}"
+                sequence: !input scene_002_keypressed3x_actions
+            # IF scene 002 4x
+              - conditions:
+                  - condition: template
+                    value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyPressed4x' }}"
+                sequence: !input scene_002_keypressed4x_actions
+            # IF scene 002 5x
+              - conditions:
+                  - condition: template
+                    value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyPressed5x' }}"
+                sequence: !input scene_002_keypressed5x_actions
+            # IF release scene 001
               - conditions:
                   - condition: template
                     value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyReleased' }}"
-                sequence: !input release_top_left_actions
-            # IF release top right
+                sequence: !input release_scene_001_actions
+            # IF release scene 002
               - conditions:
                   - condition: template
                     value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyReleased' }}"
-                sequence: !input release_top_right_actions
-            # IF release bottom left
-              - conditions:
-                  - condition: template
-                    value_template: "{{ trigger.event.data.label == 'Scene 003' and trigger.event.data.value == 'KeyReleased' }}"
-                sequence: !input release_bottom_left_actions
-            # IF release bottom right
-              - conditions:
-                  - condition: template
-                    value_template: "{{ trigger.event.data.label == 'Scene 004' and trigger.event.data.value == 'KeyReleased' }}"
-                sequence: !input release_bottom_right_actions
-            # IF hold top left
+                sequence: !input release_scene_002_actions
+            # IF hold scene 001
               - conditions:
                   - condition: template
                     value_template: "{{ trigger.event.data.label == 'Scene 001' and trigger.event.data.value == 'KeyHeldDown' }}"
-                sequence: !input hold_top_left_actions
-            # IF hold top right
+                sequence: !input hold_scene_001_actions
+            # IF hold scene 002
               - conditions:
                   - condition: template
                     value_template: "{{ trigger.event.data.label == 'Scene 002' and trigger.event.data.value == 'KeyHeldDown' }}"
-                sequence: !input hold_top_right_actions
-            # IF hold bottom left
-              - conditions:
-                  - condition: template
-                    value_template: "{{ trigger.event.data.label == 'Scene 003' and trigger.event.data.value == 'KeyHeldDown' }}"
-                sequence: !input hold_bottom_left_actions
-            # IF hold bottom right
-              - conditions:
-                  - condition: template
-                    value_template: "{{ trigger.event.data.label == 'Scene 004' and trigger.event.data.value == 'KeyHeldDown' }}"
-                sequence: !input hold_bottom_right_actions
+                sequence: !input hold_scene_002_actions
             # ELSE: unhandled scene label/value
             default:
               - service: system_log.write
