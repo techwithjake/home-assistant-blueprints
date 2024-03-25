@@ -1,54 +1,73 @@
 blueprint:
-  name: Shelly Button1 press
-  description: Control anything from a Shelly Button1
+  name: MQTT - Shelly Button1
+  description: Trigger actions with a Shelly Button1 from MQTT. Remember to set your Shelly Button1 to MQTT mode, and point it (and Home Assistant) to your MQTT broker.
   domain: automation
+
   input:
-    remote:
-      name: Shelly Button1 Switch
-      description: Button to use
-      selector:
-        entity:
-          integration: shelly
-    button_single:
-      name: Short click
+    shelly_button_id:
+        name: "Shelly Button1 Device ID"
+        description: "The Device ID of the Shelly Button1. Can be found on the web interface of the Shelly button under 'Settings -> Device Info'. (Eg.: XXXXXXXXXXXX)"
+        selector:
+          text:
+
+    single_press:
+      name: Single Press
+      description: The button is pressed 1 time.
       default: []
       selector:
-        action: {}
-    button_double:
-      name: Double click
+        action:
+    double_press:
+      name: Double Press
+      description: The button is pressed 2 times.
       default: []
       selector:
-        action: {}
-    button_triple:
-      name: Triple click
+        action:
+    triple_press:
+      name: Triple Press
+      description: The button is pressed 3 times.
       default: []
       selector:
-        action: {}
-    button_long:
-      name: Long click
+        action:
+    long_press:
+      name: Long Press
+      description: The button is long pressed (held down).
       default: []
       selector:
-        action: {}
-  source_url: https://community.home-assistant.io/t/shelly-button1-press-with-multiple-inputs-single-double-triple-long/338986 #Inspiration with modifications
-mode: restart
-max_exceeded: silent
+        action:
+
+trigger_variables:
+  button_id: !input shelly_button_id
+
+## Example MQTT topic full path: shellies/shellybutton1-E8DB84A9BDBB/input_event/0
+## Topic subscription using MQTT trigger limited templates: https://www.home-assistant.io/docs/automation/trigger/#mqtt-trigger 
 trigger:
-- platform: state
-  entity_id: !input 'remote'
-  to: "on"
+  - platform: mqtt
+    topic: "{{'shellies/shellybutton1-' ~ button_id ~ '/input_event/0'}}"
+
+## Alternatively, you can just ask for the full topic in the input, but then you'll need to input the MQTT topic path, instead of just the device ID:
+# trigger:
+#   - platform: mqtt
+#     topic: !input shelly_button_id
+#     # topic: !input input_mqtt_topic
+
+condition: []
+
 action:
-- variables:
-    event: '{{ trigger.to_state.attributes.click_type }}'
-- choose:
-  - conditions:
-    - '{{ event == "single" }}'
-    sequence: !input 'button_single'
-  - conditions:
-    - '{{ event == "double" }}'
-    sequence: !input 'button_double'
-  - conditions:
-    - '{{ event == "triple" }}'
-    sequence: !input 'button_triple'
-  - conditions:
-    - '{{ event == "long" }}'
-    sequence: !input 'button_long'
+
+  choose:
+    - conditions:
+        - condition: template
+          value_template: '{{ trigger.payload_json.event == "S" }}'
+      sequence: !input single_press
+    - conditions:
+        - condition: template
+          value_template: '{{ trigger.payload_json.event == "SS" }}'
+      sequence: !input double_press
+    - conditions:
+        - condition: template
+          value_template: '{{ trigger.payload_json.event == "SSS" }}'
+      sequence: !input triple_press
+    - conditions:
+        - condition: template
+          value_template: '{{ trigger.payload_json.event == "L" }}'
+      sequence: !input long_press
