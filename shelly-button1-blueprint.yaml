@@ -1,0 +1,55 @@
+blueprint:
+  name: Shelly Button1 press
+  description: Control anything from a Shelly Button1
+  domain: automation
+  input:
+    remote:
+      name: Shelly Button1 Switch
+      description: Button to use
+      selector:
+        entity:
+          domain: binary_sensor
+          integration: shelly
+    button_single:
+      name: Short click
+      default: []
+      selector:
+        action: {}
+    button_double:
+      name: Double click
+      default: []
+      selector:
+        action: {}
+    button_triple:
+      name: Triple click
+      default: []
+      selector:
+        action: {}
+    button_long:
+      name: Long click
+      default: []
+      selector:
+        action: {}
+  source_url: https://community.home-assistant.io/t/shelly-button1-press-with-multiple-inputs-single-double-triple-long/338986 #Inspiration with modifications
+mode: restart
+max_exceeded: silent
+trigger:
+- platform: state
+  entity_id: !input 'remote'
+  to: "on"
+action:
+- variables:
+    event: '{{ trigger.to_state.attributes.click_type }}'
+- choose:
+  - conditions:
+    - '{{ event == "single" }}'
+    sequence: !input 'button_single'
+  - conditions:
+    - '{{ event == "double" }}'
+    sequence: !input 'button_double'
+  - conditions:
+    - '{{ event == "triple" }}'
+    sequence: !input 'button_triple'
+  - conditions:
+    - '{{ event == "long" }}'
+    sequence: !input 'button_long'
