@@ -8,7 +8,6 @@ blueprint:
       description: Button to use
       selector:
         entity:
-          domain: binary_sensor
           integration: shelly
     button_single:
       name: Short click
