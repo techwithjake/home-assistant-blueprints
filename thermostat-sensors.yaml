@@ -79,8 +79,8 @@ blueprint:
       description: in case of issues with sensors it will default to this value
       selector:
         number:
-          min: 10
-          max: 25
+          min: 50
+          max: 100
           step: 1
           unit_of_measurement: "°F"
     low_setpoint:
@@ -88,8 +88,8 @@ blueprint:
       description: Low Setpoint - the lowest value to which it will allow temperature to drop - suggest value 15
       selector:
         number:
-          min: 10
-          max: 25
+          min: 50
+          max: 100
           step: 1
           unit_of_measurement: "°F"
     high_setpoint:
@@ -97,8 +97,8 @@ blueprint:
       description: High Setpoint - the highest value to which it will allow temperature to rise - suggested value 30
       selector:
         number:
-          min: 15
-          max: 35
+          min: 50
+          max: 100
           step: 1
           unit_of_measurement: "°F"
     time_1:
@@ -111,8 +111,8 @@ blueprint:
       description: the thermostat will heat to target sensor 1 temp minus heat tolerance setting , or cool to sensor 1 temp plus cool tolerance setting  on Monday to Friday
       selector:
         number:
-          min: 15
-          max: 30
+          min: 50
+          max: 100
           step: 0.5
           unit_of_measurement: "°F"
     sensor_1:
@@ -132,8 +132,8 @@ blueprint:
       description: the thermostat will heat to target sensor 2 temp minus heat tolerance setting , or cool to sensor 2 temp plus cool tolerance setting on Monday to Friday
       selector:
         number:
-          min: 15
-          max: 30
+          min: 50
+          max: 100
           step: 0.5
           unit_of_measurement: "°F"
     sensor_2:
@@ -153,8 +153,8 @@ blueprint:
       description: the thermostat will heat to target sensor 3 temp minus heat tolerance setting, or cool to sensor 3 temp plus cool tolerance setting on Monday to Friday
       selector:
         number:
-          min: 15
-          max: 30
+          min: 50
+          max: 100
           step: 0.5
           unit_of_measurement: "°F"
     sensor_3:
@@ -174,8 +174,8 @@ blueprint:
       description: the thermostat will heat to target sensor 4 temp minus heat tolerance setting, or cool to sensor 4 temp plus cool tolerance setting on Monday to Friday
       selector:
         number:
-          min: 15
-          max: 30
+          min: 50
+          max: 100
           step: 0.5
           unit_of_measurement: "°F"
     sensor_4:
@@ -195,8 +195,8 @@ blueprint:
       description: the thermostat will heat to target sensor 1 temp minus heat tolerance setting, or cool to sensor 1 temp plus cool tolerance setting on Saturday and Sunday
       selector:
         number:
-          min: 15
-          max: 30
+          min: 50
+          max: 100
           step: 0.5
           unit_of_measurement: "°F"
     sensor_1_ss:
@@ -216,8 +216,8 @@ blueprint:
       description: the thermostat will heat to target sensor 2 temp minus heat tolerance setting, or cool to sensor 2 temp plus cool tolerance setting on Saturday and Sunday
       selector:
         number:
-          min: 15
-          max: 30
+          min: 50
+          max: 100
           step: 0.5
           unit_of_measurement: "°F"
     sensor_2_ss:
@@ -237,8 +237,8 @@ blueprint:
       description: the thermostat will heat to target sensor 3 temp minus heat tolerance setting, or cool to sensor 3 temp plus cool tolerance setting on Saturday and Sunday
       selector:
         number:
-          min: 15
-          max: 30
+          min: 50
+          max: 100
           step: 0.5
           unit_of_measurement: "°F"
     sensor_3_ss:
@@ -258,8 +258,8 @@ blueprint:
       description: the thermostat will heat to target sensor 4 temp minus heat tolerance setting, or cool to sensor 4 temp plus cool tolerance setting on Saturday and Sunday
       selector:
         number:
-          min: 15
-          max: 30
+          min: 50
+          max: 100
           step: 0.5
           unit_of_measurement: "°F"
     sensor_4_ss:
