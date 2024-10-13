@@ -82,7 +82,7 @@ blueprint:
           min: 10
           max: 25
           step: 1
-          unit_of_measurement: "°C"
+          unit_of_measurement: "°F"
     low_setpoint:
       name: low setpoint
       description: Low Setpoint - the lowest value to which it will allow temperature to drop - suggest value 15
@@ -91,7 +91,7 @@ blueprint:
           min: 10
           max: 25
           step: 1
-          unit_of_measurement: "°C"
+          unit_of_measurement: "°F"
     high_setpoint:
       name: high setpoint
       description: High Setpoint - the highest value to which it will allow temperature to rise - suggested value 30
@@ -100,7 +100,7 @@ blueprint:
           min: 15
           max: 35
           step: 1
-          unit_of_measurement: "°C"
+          unit_of_measurement: "°F"
     time_1:
       name: M-F first time
       description: first time interval of the day on Monday to Friday
@@ -114,7 +114,7 @@ blueprint:
           min: 15
           max: 30
           step: 0.5
-          unit_of_measurement: "°C"
+          unit_of_measurement: "°F"
     sensor_1:
       name: M-F first sensor
       description: first sensor to use for temperature on Monday to Friday
@@ -135,7 +135,7 @@ blueprint:
           min: 15
           max: 30
           step: 0.5
-          unit_of_measurement: "°C"
+          unit_of_measurement: "°F"
     sensor_2:
       name: M-F second sensor
       description: second sensor to use for temperature on Monday to Friday
@@ -156,7 +156,7 @@ blueprint:
           min: 15
           max: 30
           step: 0.5
-          unit_of_measurement: "°C"
+          unit_of_measurement: "°F"
     sensor_3:
       name: M-F third sensor
       description: third sensor to use for temperature on Monday to Friday
@@ -177,7 +177,7 @@ blueprint:
           min: 15
           max: 30
           step: 0.5
-          unit_of_measurement: "°C"
+          unit_of_measurement: "°F"
     sensor_4:
       name: M-F fourth sensor
       description: fourth sensor to use for temperature on Monday to Friday
@@ -198,7 +198,7 @@ blueprint:
           min: 15
           max: 30
           step: 0.5
-          unit_of_measurement: "°C"
+          unit_of_measurement: "°F"
     sensor_1_ss:
       name: S-S first sensor
       description: first sensor to use for temperature on Saturday and Sunday
@@ -219,7 +219,7 @@ blueprint:
           min: 15
           max: 30
           step: 0.5
-          unit_of_measurement: "°C"
+          unit_of_measurement: "°F"
     sensor_2_ss:
       name: S-S second sensor
       description: second sensor to use for temperature on Saturday and Sunday
@@ -240,7 +240,7 @@ blueprint:
           min: 15
           max: 30
           step: 0.5
-          unit_of_measurement: "°C"
+          unit_of_measurement: "°F"
     sensor_3_ss:
       name: S-S third sensor
       description: third sensor to use for temperature on Saturday and Sunday
@@ -261,7 +261,7 @@ blueprint:
           min: 15
           max: 30
           step: 0.5
-          unit_of_measurement: "°C"
+          unit_of_measurement: "°F"
     sensor_4_ss:
       name: S-S fourth sensor
       description: fourth sensor to use for temperature on Saturday and Sunday
