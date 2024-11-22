@@ -43,7 +43,7 @@ action:
         {%- set people_home = states.person | selectattr('entity_id', 'in', person_entities) | selectattr('state', 'eq', 'home') | map(attribute='name') | list -%}
         {%- set people_away = states.person | selectattr('entity_id', 'in', person_entities) | rejectattr('state', 'eq', 'home') | map(attribute='name') | list -%}
         
-        {{ person }} is {{ new_state }}. Right now, {{''}}
+        {{ person }} is {{ new_state }}. Now, {{''}}
         {%- set group = people_home if new_state == 'back' else people_away -%}
         {%- set group_last = group[-1] if group|length > 1 else None -%}
         {%- set group_list = group[:-1] | join(', ') -%}
