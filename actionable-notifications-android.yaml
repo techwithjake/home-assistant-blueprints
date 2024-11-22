@@ -49,18 +49,6 @@ blueprint:
       default: []
       selector:
         action:
-    action3_text:
-      name: "Action 3 Text"
-      description: "Text to show on the Action 3 button"
-      default: "Put Text Here"
-      selector:
-        text:
-    action3:
-      name: "Action 3"
-      description: "Action to run when notification is pressed"
-      default: []
-      selector:
-        action:
 
 mode: restart
 
@@ -69,7 +57,6 @@ sequence:
     variables:
       action1: "{{ 'ACTION1_' ~ context.id }}"
       action2: "{{ 'ACTION2_' ~ context.id }}"
-      action3: "{{ 'ACTION3_' ~ context.id }}"
   - alias: "Send notification"
     domain: mobile_app
     type: notify
@@ -82,8 +69,6 @@ sequence:
           title: !input action1_text
         - action: "{{ action2 }}"
           title: !input action2_text
-        - action: "{{ action3 }}"
-          title: !input action3_text
   - alias: "Awaiting response"
     wait_for_trigger:
       - platform: event
@@ -94,14 +79,8 @@ sequence:
         event_type: mobile_app_notification_action
         event_data:
           action: "{{ action2 }}"
-      - platform: event
-        event_type: mobile_app_notification_action
-        event_data:
-          action: "{{ action3 }}"
   - choose:
       - conditions: "{{ wait.trigger.event.data.action == action1 }}"
         sequence: !input action1
       - conditions: "{{ wait.trigger.event.data.action == action2 }}"
         sequence: !input action2
-      - conditions: "{{ wait.trigger.event.data.action == action3 }}"
-        sequence: !input action3
