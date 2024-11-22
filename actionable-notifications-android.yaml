@@ -1,0 +1,107 @@
+blueprint:
+  name: Confirmable Notification
+  description: >-
+    A script that sends an actionable notification with a confirmation before
+    running the specified action.
+  domain: script
+  source_url: https://github.com/home-assistant/core/blob/master/homeassistant/components/script/blueprints/confirmable_notification.yaml
+  author: Home Assistant
+  input:
+    notify_device:
+      name: Device to notify
+      description: Device needs to run the official Home Assistant app to receive notifications.
+      selector:
+        device:
+          filter:
+            integration: mobile_app
+    title:
+      name: "Title"
+      description: "The title of the button shown in the notification."
+      default: ""
+      selector:
+        text:
+    message:
+      name: "Message"
+      description: "The message body"
+      selector:
+        text:
+    action1_text:
+      name: "Action 1 Text"
+      description: "Text to show on the action 1 button"
+      default: "Put Text Here"
+      selector:
+        text:
+    action1:
+      name: "Action 1"
+      description: "Action to run when notification is pressed"
+      default: []
+      selector:
+        action:
+    action2_text:
+      name: "Action 2 Text"
+      description: "Text to show on the action 2 button"
+      default: "Dismiss"
+      selector:
+        text:
+    action2:
+      name: "Action 2"
+      description: "Action to run when notification is pressed"
+      default: []
+      selector:
+        action:
+    action3_text:
+      name: "Action 3 Text"
+      description: "Text to show on the action 3 button"
+      default: "Dismiss"
+      selector:
+        text:
+    action2:
+      name: "Action 3"
+      description: "Action to run when notification is pressed"
+      default: []
+      selector:
+        action:
+
+mode: restart
+
+sequence:
+  - alias: "Set up variables"
+    variables:
+      action1: "{{ 'ACTION1_' ~ context.id }}"
+      action2: "{{ 'ACTION2_' ~ context.id }}"
+      action3: "{{ 'ACTION3_' ~ context.id }}"
+  - alias: "Send notification"
+    domain: mobile_app
+    type: notify
+    device_id: !input notify_device
+    title: !input title
+    message: !input message
+    data:
+      actions:
+        - action: "{{ action1 }}"
+          title: !input action1_text
+        - action: "{{ action2 }}"
+          title: !input action2_text
+        - action: "{{ action3 }}"
+          title: !input action3_text
+  - alias: "Awaiting response"
+    wait_for_trigger:
+      - platform: event
+        event_type: mobile_app_notification_action
+        event_data:
+          action: "{{ action1 }}"
+      - platform: event
+        event_type: mobile_app_notification_action
+        event_data:
+          action: "{{ action2 }}"
+      - platform: event
+        event_type: mobile_app_notification_action
+        event_data:
+          action: "{{ action3 }}"
+  - choose:
+      - conditions: "{{ wait.trigger.event.data.action == action1 }}"
+        sequence: !input action1
+      - conditions: "{{ wait.trigger.event.data.action == action2 }}"
+        sequence: !input action2
+      - conditions: "{{ wait.trigger.event.data.action == action3 }}"
+        sequence: !input action3
