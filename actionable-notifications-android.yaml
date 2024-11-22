@@ -55,7 +55,7 @@ blueprint:
       default: "Dismiss"
       selector:
         text:
-    action2:
+    action3:
       name: "Action 3"
       description: "Action to run when notification is pressed"
       default: []
