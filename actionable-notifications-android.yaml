@@ -1,5 +1,5 @@
 blueprint:
-  name: Confirmable Notification
+  name: Actionable Notifications for Android
   description: >-
     A script that sends an actionable notification with a confirmation before
     running the specified action.
@@ -27,7 +27,7 @@ blueprint:
         text:
     action1_text:
       name: "Action 1 Text"
-      description: "Text to show on the action 1 button"
+      description: "Text to show on the Action 1 button"
       default: "Put Text Here"
       selector:
         text:
@@ -39,8 +39,8 @@ blueprint:
         action:
     action2_text:
       name: "Action 2 Text"
-      description: "Text to show on the action 2 button"
-      default: "Dismiss"
+      description: "Text to show on the Action 2 button"
+      default: "Put Text Here"
       selector:
         text:
     action2:
@@ -51,8 +51,8 @@ blueprint:
         action:
     action3_text:
       name: "Action 3 Text"
-      description: "Text to show on the action 3 button"
-      default: "Dismiss"
+      description: "Text to show on the Action 3 button"
+      default: "Put Text Here"
       selector:
         text:
     action3:
