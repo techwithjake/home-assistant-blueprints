@@ -14,6 +14,7 @@ blueprint:
         target:
           entity:
             domain: switch
+              device_class: motion
     motion_stopped_wait:
       name: Wait time
       description: Time to leave the switch on after motion has stopped
