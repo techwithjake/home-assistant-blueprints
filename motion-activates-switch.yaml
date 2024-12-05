@@ -1,0 +1,47 @@
+blueprint:
+  name: Motion Sensor-activated Switch
+  description: Turn on a switch when door is opened.
+  domain: automation
+  input:
+    motionsensor_entity:
+      name: Motion Sensor
+      selector:
+        entity:
+          domain: binary_sensor
+    switch_target:
+      name: Switch
+      selector:
+        target:
+          entity:
+            domain: switch
+    motion_stopped_wait:
+      name: Wait time
+      description: Time to leave the switch on after motion has stopped
+      default: 120
+      selector:
+        number:
+          min: 0
+          max: 3600
+          unit_of_measurement: seconds
+
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  platform: state
+  entity_id: !input motionsensor_entity
+  from: "off"
+  to: "on"
+
+action:
+  - service: switch.turn_on
+    target: !input switch_target
+  - wait_for_trigger:
+      platform: state
+      entity_id: !input motionsensor_entity
+      from: "on"
+      to: "off"
+  - delay: !input motion_stopped_wait
+  - service: switch.turn_off
+    target: !input switch_target
