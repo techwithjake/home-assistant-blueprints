@@ -7,7 +7,9 @@ blueprint:
       name: Door Sensor
       selector:
         entity:
-          domain: binary_sensor
+          filter:
+            device_class: opening
+            domain: binary_sensor
     switch_target:
       name: Switch
       selector:
