@@ -38,8 +38,7 @@ blueprint:
       default: []
       selector:
         entity:
-          filter:
-            device_class: person
+          domain: person
     notify_service:
       name: Notify Service
       description: The service that will be called to deliver the notification. (ie. notify.mobile_app_my_phone)
