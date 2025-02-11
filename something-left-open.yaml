@@ -37,8 +37,9 @@ blueprint:
       description: Select all the people you want to have leave to trigger the notification.
       default: []
       selector:
-        entities:
-          device_class: person
+        entity:
+          filter:
+            device_class: person
     notify_service:
       name: Notify Service
       description: The service that will be called to deliver the notification. (ie. notify.mobile_app_my_phone)
