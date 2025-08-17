@@ -37,4 +37,4 @@ condition:
 action:
   - service: homeassistant.turn_{{'on' if trigger.to_state.state == 'off' else 'off'}}
     data:
-      entity_id: '{{ 'switch.switch_1' if trigger.to_state.entity_id == 'switch.switch_2' else 'switch.switch_2' }}'
+      entity_id: '{{ 'entity_1' if trigger.to_state.entity_id == 'entity_2' else 'entity_2' }}'
